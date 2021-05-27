@@ -98,15 +98,3 @@ class User(Model):
         return False
             
             
-        
-    def delete_user(id):
-        user_query = 'SELECT * FROM users WHERE id = %s'
-        result = Model.db_handler.execute(user_query, (id,))
-        if len(result) == 0:
-            return None
-        user = result[0]
-        query = 'DELETE FROM users WHERE id = %s'
-        result = Model.db_handler.execute(query, (id,), commit=True) 
-        if result:
-            return user 
-        return False

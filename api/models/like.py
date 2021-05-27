@@ -10,14 +10,7 @@ class Like(Model):
         query = 'SELECT * FROM likes'
         likes = Model.db_handler.execute(query)
         return likes 
-    def get_posts_liked_by(user_id):
-        user_query = 'SELECT id FROM users WHERE id = %s' 
-        users = Model.db_handler.execute(user_query, (user_id,))
-        if len(users) == 0:
-            return None
-        query = 'SELECT * FROM posts WHERE id IN (SELECT post_id FROM likes WHERE user_id = %s)'
-        posts = Model.db_handler.execute(query, (user_id, ))
-        return posts  
+    
     def get_likes_of_post(post_id):
         post_query = 'SELECT id FROM users WHERE id = %s' 
         posts = Model.db_handler.execute(post_query, (post_id,))
